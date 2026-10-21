@@ -1,0 +1,478 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Azteca y la fibra de Colombia</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+<style>
+/* Concepto: infografía editorial en tarjetas, una idea por sección, rojo como único acento, barras y puntos que se dibujan al entrar en pantalla. */
+:root{
+  --page:#ffffff; --bg:#f3f1ef; --surface:#ffffff; --ink:#1b1a19; --muted:#6a6662; --line:#e5e2de;
+  --accent:#c8102e; --accent-soft:#f8e3e6; --on-accent:#ffffff;
+  --seg-a:#2d2b29; --seg-b:#b8b3ad; --seg-c:#dcd8d3;
+  color-scheme:light;
+  --font:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+}
+
+*{box-sizing:border-box}
+body{margin:0;background:var(--page);color:var(--ink);font-family:var(--font);font-size:16px;line-height:1.55;
+  padding-block:20px 56px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));
+  -webkit-font-smoothing:antialiased}
+.wrap{max-width:960px;margin:0 auto;display:flex;flex-direction:column;gap:20px}
+h1,h2,h3,p{margin:0}
+h1{font-size:clamp(30px,5.4vw,52px);line-height:1.04;font-weight:800;letter-spacing:-.025em;text-wrap:balance}
+h2{font-size:clamp(21px,3vw,28px);line-height:1.15;font-weight:700;letter-spacing:-.015em;text-wrap:balance}
+.kicker{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+.lead{color:var(--muted);font-size:17px;max-width:60ch}
+.small{font-size:13px;color:var(--muted)}
+.num{font-variant-numeric:tabular-nums}
+
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:clamp(20px,3.4vw,32px);display:flex;flex-direction:column;gap:22px;min-width:0}
+.head{display:flex;flex-direction:column;gap:8px}
+.head p{color:var(--muted);max-width:62ch}
+
+/* Hero */
+.hero{display:grid;grid-template-columns:auto 1fr;gap:clamp(20px,4vw,44px);align-items:center}
+.ring{width:clamp(130px,22vw,190px);position:relative}
+.ring svg{width:100%;display:block;transform:rotate(-90deg)}
+.ring circle{fill:none;stroke-width:9}
+.ring .bg{stroke:var(--line)}
+.ring .fg{stroke:var(--accent);stroke-linecap:round;stroke-dasharray:339.3;stroke-dashoffset:67.86;transition:stroke-dashoffset 1.5s cubic-bezier(.2,.7,.2,1)}
+.pre .ring .fg{stroke-dashoffset:339.3}
+.ring b{position:absolute;inset:0;display:grid;place-items:center;font-size:clamp(30px,5vw,44px);font-weight:800;letter-spacing:-.02em}
+.ring b small{font-size:.5em;font-weight:700;margin-left:1px}
+.hero-text{display:flex;flex-direction:column;gap:14px;min-width:0}
+.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:6px}
+.stat{border-top:2px solid var(--ink);padding-top:10px}
+.stat b{display:block;font-size:clamp(20px,3vw,28px);font-weight:800;letter-spacing:-.02em}
+.stat span{font-size:13px;color:var(--muted);line-height:1.3;display:block}
+
+/* Controles */
+.seg-ctl{display:inline-flex;border:1px solid var(--line);border-radius:999px;padding:3px;gap:2px;align-self:flex-start;background:var(--bg);max-width:100%;flex-wrap:wrap}
+.seg-ctl button{font:inherit;font-size:14px;font-weight:600;border:0;background:transparent;color:var(--muted);padding:7px 16px;border-radius:999px;cursor:pointer;transition:background .2s,color .2s}
+.seg-ctl button[aria-pressed="true"]{background:var(--accent);color:var(--on-accent)}
+.seg-ctl button:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+
+/* Barras */
+.rows{display:flex;flex-direction:column;gap:20px}
+.row{display:flex;flex-direction:column;gap:7px}
+.row-top{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.row-top span{font-size:14px;color:var(--muted)}
+.row-top b{font-size:clamp(18px,2.6vw,24px);font-weight:800;letter-spacing:-.01em}
+.track{height:16px;background:var(--bg);border-radius:8px;position:relative;overflow:hidden}
+.track .ghost{position:absolute;inset:0 auto 0 0;background:var(--seg-c);border-radius:8px}
+.track .bar{position:absolute;inset:0 auto 0 0;background:var(--accent);border-radius:8px;transition:width .9s cubic-bezier(.2,.7,.2,1)}
+.track .bar.dark{background:var(--seg-a)}
+.pre .track .bar,.pre .track .ghost{width:0!important}
+.track .ghost{transition:width .9s cubic-bezier(.2,.7,.2,1)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font-size:13px;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:5px 12px}
+.chip b{color:var(--ink);font-weight:700}
+
+/* Segmentada */
+.stack{display:flex;gap:2px;height:44px}
+.seg{flex:var(--g) 1 0%;border-radius:4px;transition:flex-grow 1.1s cubic-bezier(.2,.7,.2,1);min-width:0;cursor:default}
+.pre .seg{flex-grow:0}
+.seg.a{background:var(--accent)} .seg.b{background:var(--seg-b)} .seg.c{background:var(--seg-c)} .seg.d{background:var(--seg-a)}
+.seg:hover{filter:brightness(1.08)}
+.legend{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px}
+.legend div{display:flex;gap:10px;align-items:flex-start;font-size:14px;line-height:1.35}
+.legend i{width:12px;height:12px;border-radius:3px;flex:0 0 auto;margin-top:3px}
+.legend b{display:block;font-weight:700}
+.legend span{color:var(--muted)}
+.quote{border-left:3px solid var(--accent);padding:2px 0 2px 16px;display:flex;flex-direction:column;gap:4px}
+.quote p{font-size:clamp(17px,2.4vw,21px);font-weight:600;line-height:1.35;letter-spacing:-.01em}
+.quote span{font-size:13px;color:var(--muted)}
+
+/* Callout */
+.callout{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;background:var(--accent-soft);border-radius:10px;padding:16px 18px}
+.callout b{font-size:clamp(24px,4vw,34px);font-weight:800;color:var(--accent);letter-spacing:-.02em}
+.callout span{font-size:14px;max-width:42ch}
+
+/* Disputa */
+.two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.mini{border:1px solid var(--line);border-radius:10px;padding:16px;display:flex;flex-direction:column;gap:6px}
+.mini h3{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.mini p{font-size:15px}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:18px}
+.facts div b{display:block;font-size:clamp(22px,3.4vw,30px);font-weight:800;letter-spacing:-.02em}
+.facts div span{font-size:13px;color:var(--muted);line-height:1.3;display:block}
+
+/* Cronología */
+.tl{list-style:none;margin:0;padding:0 0 0 22px;position:relative;display:flex;flex-direction:column;gap:18px}
+.tl::before{content:"";position:absolute;left:5px;top:6px;bottom:6px;width:2px;background:var(--line);transform-origin:top;transition:transform 1.4s ease}
+.pre .tl::before{transform:scaleY(0)}
+.tl li{position:relative;display:grid;grid-template-columns:96px 1fr;gap:12px;transition:opacity .6s ease,transform .6s ease}
+.tl li::before{content:"";position:absolute;left:-22px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--surface);border:2px solid var(--seg-b)}
+.tl li.hot::before{background:var(--accent);border-color:var(--accent)}
+.pre .tl li{opacity:0;transform:translateY(8px)}
+.tl time{font-size:13px;font-weight:700;color:var(--muted);padding-top:1px}
+.tl li.hot time{color:var(--accent)}
+.tl p{font-size:15px}
+
+/* Puntos */
+.dots{display:grid;grid-template-columns:repeat(38,1fr);gap:3px}
+.dot{aspect-ratio:1;border-radius:50%;background:var(--seg-c);transition:opacity .5s ease,transform .5s ease}
+.dot.hot{background:var(--accent)}
+.pre .dot{opacity:0;transform:scale(.3)}
+.big{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.big b{font-size:clamp(34px,6vw,56px);font-weight:800;letter-spacing:-.03em;line-height:1}
+.big span{color:var(--muted);font-size:15px}
+.list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.list li{display:flex;gap:12px;font-size:15px;align-items:flex-start}
+.list li::before{content:"";flex:0 0 auto;width:8px;height:8px;border-radius:50%;margin-top:8px;background:var(--accent)}
+.list.good li::before{background:var(--seg-a)}
+.panel[hidden]{display:none}
+.fade{transition:opacity .6s ease,transform .6s ease}
+.pre .fade{opacity:0;transform:translateY(8px)}
+.scen{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.scen div{border:1px solid var(--line);border-radius:10px;padding:14px 16px;display:flex;flex-direction:column;gap:4px}
+.scen div.on{border-color:var(--accent);background:var(--accent-soft)}
+.scen b{font-size:15px}
+.scen span{font-size:13px;color:var(--muted);line-height:1.4}
+
+.foot{font-size:12.5px;color:var(--muted);line-height:1.6;display:flex;flex-direction:column;gap:4px;padding:0 4px}
+.tip{position:fixed;z-index:20;pointer-events:none;background:var(--ink);color:var(--bg);font-size:13px;font-weight:500;padding:7px 10px;border-radius:7px;max-width:240px;opacity:0;transition:opacity .12s}
+
+
+/* Navegación por secciones */
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--page);z-index:10}
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:var(--page);display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px;padding:10px 0 12px;border-bottom:1px solid var(--line);margin-bottom:4px}
+.nav button{font:inherit;font-size:14px;font-weight:600;line-height:1.2;color:var(--ink);background:var(--page);border:1.5px solid var(--line);border-radius:10px;padding:11px 8px;cursor:pointer;text-align:center;min-height:46px;display:flex;align-items:center;justify-content:center;transition:background .2s,color .2s,border-color .2s}
+.nav button:hover{border-color:var(--accent);color:var(--accent)}
+.nav button[aria-selected="true"]{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.nav button:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.tab{display:flex;flex-direction:column;gap:20px}
+.tab[hidden]{display:none}
+.pager{display:flex;justify-content:space-between;gap:12px;padding-top:4px}
+.pager button{font:inherit;font-size:14px;font-weight:600;color:var(--ink);background:var(--page);border:1px solid var(--line);border-radius:999px;padding:9px 18px;cursor:pointer;transition:border-color .2s,color .2s}
+.pager button:hover{border-color:var(--accent);color:var(--accent)}
+.pager button:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.pager .sp{flex:1}
+
+@media (max-width:760px){
+  .nav{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+@media (max-width:640px){
+  .hero{grid-template-columns:1fr;justify-items:start}
+  .stats{grid-template-columns:1fr 1fr 1fr;gap:10px}
+  .two,.scen{grid-template-columns:1fr}
+  .tl li{grid-template-columns:1fr;gap:2px}
+  .dots{gap:2px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+<div class="wrap">
+
+  <div class="nav" role="tablist" aria-label="Secciones">
+    <button type="button" role="tab" id="t-resumen" aria-controls="tab-resumen" aria-selected="true" data-tab="resumen">Resumen</button>
+    <button type="button" role="tab" id="t-red" aria-controls="tab-red" aria-selected="false" data-tab="red">La red</button>
+    <button type="button" role="tab" id="t-cuentas" aria-controls="tab-cuentas" aria-selected="false" data-tab="cuentas">Las cuentas</button>
+    <button type="button" role="tab" id="t-disputa" aria-controls="tab-disputa" aria-selected="false" data-tab="disputa">Disputa con ATP</button>
+    <button type="button" role="tab" id="t-cronologia" aria-controls="tab-cronologia" aria-selected="false" data-tab="cronologia">Cronología</button>
+    <button type="button" role="tab" id="t-claro" aria-controls="tab-claro" aria-selected="false" data-tab="claro">Claro y la SIC</button>
+  </div>
+
+  <div class="tab" id="tab-resumen" role="tabpanel" aria-labelledby="t-resumen">
+  <section class="card s">
+    <div class="hero">
+      <div class="ring" role="img" aria-label="80 % del territorio cubierto por la red de Azteca">
+        <svg viewBox="0 0 120 120"><circle class="bg" cx="60" cy="60" r="54"/><circle class="fg" cx="60" cy="60" r="54"/></svg>
+        <b><span><span data-count="80">80</span><small>%</small></span></b>
+      </div>
+      <div class="hero-text">
+        <div class="kicker">Telecomunicaciones · Fibra óptica</div>
+        <h1>La red que conecta a Colombia está en reorganización</h1>
+        <p class="lead">Azteca Comunicaciones tendió la mayor troncal de fibra del país. Hoy sus pasivos superan a sus activos y la SIC estudia una posible venta a Claro.</p>
+      </div>
+    </div>
+    <div class="stats">
+      <div class="stat"><b class="num"><span data-count="32000">32.000</span> km</b><span>de red troncal</span></div>
+      <div class="stat"><b class="num">~<span data-count="900">900</span></b><span>municipios alcanzados</span></div>
+      <div class="stat"><b class="num">&gt;50 %</b><span>del mercado portador</span></div>
+    </div>
+  </section>
+  </div>
+
+  <div class="tab" id="tab-red" role="tabpanel" aria-labelledby="t-red" hidden>
+  <section class="card s" id="evolucion">
+    <div class="head">
+      <div class="kicker">La apuesta</div>
+      <h2>En 2011 era una licitación. Hoy es la red más grande del país.</h2>
+      <p>Azteca ganó el contrato del Ministerio de las TIC para desplegar la fibra en 30 meses. Cambia de época para ver cuánto creció.</p>
+    </div>
+    <div class="seg-ctl" role="group" aria-label="Época" id="eraCtl">
+      <button type="button" aria-pressed="false" data-era="2011">Meta de 2011</button>
+      <button type="button" aria-pressed="true" data-era="hoy">Hoy</button>
+    </div>
+    <div class="rows">
+      <div class="row">
+        <div class="row-top"><span>Kilómetros de fibra óptica</span><b class="num" id="v-km">32.000 km</b></div>
+        <div class="track"><div class="ghost" style="width:42.9%" data-tip="Meta de 2011: 15.000 km"></div><div class="bar" id="b-km" style="width:91.4%"></div></div>
+      </div>
+      <div class="row">
+        <div class="row-top"><span>Municipios conectados</span><b class="num" id="v-mun">~900</b></div>
+        <div class="track"><div class="ghost" style="width:40%" data-tip="Meta de 2011: más de 400 municipios"></div><div class="bar" id="b-mun" style="width:90%"></div></div>
+      </div>
+    </div>
+    <p class="small" id="eraNote">La franja gris marca la meta de 2011. Escala: hasta 35.000 km y 1.000 municipios.</p>
+    <div class="chips fade">
+      <span class="chip"><b>USD 300 millones</b> invertidos</span>
+      <span class="chip"><b>2.000</b> instituciones educativas por conectar</span>
+      <span class="chip">En 2011 solo <b>200</b> municipios tenían internet</span>
+    </div>
+  </section>
+  <section class="card s">
+    <div class="head">
+      <div class="kicker">Peso en el mercado</div>
+      <h2>Azteca concentra más de la mitad del transporte mayorista portador</h2>
+      <p>El transporte de datos en el país suma unos 100.000 km de fibra entre redes privadas de los operadores y el mercado portador, según la CRC.</p>
+    </div>
+    <div class="stack" role="img" aria-label="Distribución de 100.000 km de fibra: 40.000 privadas, 32.000 de Azteca, 28.000 del resto del mercado portador">
+      <div class="seg c" style="--g:40" data-tip="Redes privadas de operadores: ~40.000 km"></div>
+      <div class="seg a" style="--g:32" data-tip="Azteca: 32.000 km"></div>
+      <div class="seg b" style="--g:28" data-tip="Resto del mercado portador: ~28.000 km"></div>
+    </div>
+    <div class="legend">
+      <div><i style="background:var(--seg-c)"></i><p><b class="num">~40.000 km</b><span>Redes privadas de los operadores</span></p></div>
+      <div><i style="background:var(--accent)"></i><p><b class="num">32.000 km</b><span>Azteca, en el mercado portador</span></p></div>
+      <div><i style="background:var(--seg-b)"></i><p><b class="num">~28.000 km</b><span>Resto del portador (Ufinet, OnNet y otros)*</span></p></div>
+    </div>
+    <div class="quote fade">
+      <p>Si Azteca desapareciera mañana, se desconectaría el 80 % de Colombia.</p>
+      <span>Felipe Díaz, director de la CRC, en un escenario hipotético</span>
+    </div>
+  </section>
+  </div>
+
+  <div class="tab" id="tab-cuentas" role="tabpanel" aria-labelledby="t-cuentas" hidden>
+  <section class="card s">
+    <div class="head">
+      <div class="kicker">Las cuentas</div>
+      <h2>Las deudas superan lo que tiene</h2>
+      <p>Cifras reportadas a la Superintendencia de Sociedades dentro del proceso de reorganización, en millones de pesos.</p>
+    </div>
+    <div class="seg-ctl" role="group" aria-label="Empresa" id="balCtl">
+      <button type="button" aria-pressed="true" data-b="az">Azteca Comunicaciones</button>
+      <button type="button" aria-pressed="false" data-b="tv">TV Azteca Sucursal Colombia</button>
+    </div>
+    <div class="rows">
+      <div class="row">
+        <div class="row-top"><span>Activos</span><b class="num" id="v-act">COP 301.880 M</b></div>
+        <div class="track"><div class="bar dark" id="b-act" style="width:75.5%"></div></div>
+      </div>
+      <div class="row">
+        <div class="row-top"><span>Pasivos</span><b class="num" id="v-pas">COP 388.302 M</b></div>
+        <div class="track"><div class="bar" id="b-pas" style="width:97.1%"></div></div>
+      </div>
+    </div>
+    <div class="callout">
+      <b class="num" id="v-def">COP 86.422 M</b>
+      <span id="t-def">es lo que los pasivos de Azteca superan a sus activos. En marzo de 2025 anunció su reorganización para renegociar deudas.</span>
+    </div>
+    <p class="small" id="balNote">Escala común hasta COP 400.000 millones.</p>
+  </section>
+  </div>
+
+  <div class="tab" id="tab-disputa" role="tabpanel" aria-labelledby="t-disputa" hidden>
+  <section class="card s">
+    <div class="head">
+      <div class="kicker">Riesgo de desconexión</div>
+      <h2>Una deuda de COP 10.300 millones puso en juego a 58.000 usuarios</h2>
+      <p>ATP, proveedor de infraestructura de TV Azteca, notificó la terminación de dos contratos marco. Azteca lo discute.</p>
+    </div>
+    <div class="facts">
+      <div><b class="num">2 → <span data-count="419">419</span></b><span>contratos marco y los contratos de sitios que de ellos se derivan</span></div>
+      <div><b class="num">&gt;COP <span data-count="10300">10.300</span> M</b><span>deuda que alega ATP, sin intereses de mora</span></div>
+      <div><b class="num">~<span data-count="58000">58.000</span></b><span>usuarios que la CRC calcula en riesgo</span></div>
+      <div><b class="num">25 %</b><span>de los accesos en municipios, uno de cada cuatro</span></div>
+    </div>
+    <div class="rows">
+      <div class="row">
+        <div class="row-top"><span>Accesos en riesgo según la CRC</span><b class="num">~58.000</b></div>
+        <div class="stack" style="height:28px" role="img" aria-label="De 58.000 accesos, unos 15.000 están en Chocó">
+          <div class="seg a" style="--g:15" data-tip="Chocó: ~15.000 accesos"></div>
+          <div class="seg c" style="--g:43" data-tip="Resto del país: ~43.000 accesos*"></div>
+        </div>
+        <div class="legend" style="margin-top:6px">
+          <div><i style="background:var(--accent)"></i><p><b class="num">~15.000</b><span>Chocó, la región más afectada</span></p></div>
+          <div><i style="background:var(--seg-c)"></i><p><b class="num">~43.000</b><span>Otras regiones*</span></p></div>
+        </div>
+      </div>
+    </div>
+    <div class="two fade">
+      <div class="mini"><h3>Según ATP</h3><p>Mantuvo la infraestructura más de cinco meses sin recibir pago y dio oportunidades de subsanar.</p></div>
+      <div class="mini"><h3>Según Azteca</h3><p>Las facturas fueron rechazadas ante la DIAN y hay una controversia contractual sobre su validez y cuantía.</p></div>
+    </div>
+    <p class="small">El 3 de septiembre ATP y TV Azteca anunciaron un entendimiento para mantener los contratos. Ninguna dio detalles de las garantías.</p>
+  </section>
+  </div>
+
+  <div class="tab" id="tab-cronologia" role="tabpanel" aria-labelledby="t-cronologia" hidden>
+  <section class="card s">
+    <div class="head">
+      <div class="kicker">Cronología</div>
+      <h2>De la licitación al posible comprador</h2>
+    </div>
+    <ul class="tl">
+      <li class="hot" style="transition-delay:.1s"><time>2011</time><p>Azteca gana la licitación del Ministerio de las TIC para desplegar unos 15.000 km de fibra.</p></li>
+      <li style="transition-delay:.25s"><time>Marzo 2025</time><p>Anuncia su reorganización empresarial y Ufinet pide a la SIC adquirir sus activos.</p></li>
+      <li style="transition-delay:.4s"><time>Abril 2025</time><p>Ufinet desiste de la compra sin dar explicación pública.</p></li>
+      <li style="transition-delay:.55s"><time>Marzo 2026</time><p>Claro presenta a la SIC una solicitud de preevaluación para integrarse con Azteca.</p></li>
+      <li style="transition-delay:.7s"><time>Agosto 2026</time><p>ATP notifica la terminación de dos contratos marco por una deuda de más de COP 10.300 millones.</p></li>
+      <li class="hot" style="transition-delay:.85s"><time>3 sept. 2026</time><p>ATP y TV Azteca alcanzan un entendimiento. La integración con Claro sigue en pausa.</p></li>
+    </ul>
+  </section>
+  </div>
+
+  <div class="tab" id="tab-claro" role="tabpanel" aria-labelledby="t-claro" hidden>
+  <section class="card s">
+    <div class="head">
+      <div class="kicker">La decisión de la SIC</div>
+      <h2>Con Claro, Azteca quedaría como único proveedor de fibra en 778 de sus 874 rutas</h2>
+      <p>Cada punto es una ruta de Azteca. Los rojos serían rutas donde Claro, que administraría la red, quedaría sin competidor de fibra.</p>
+    </div>
+    <div class="big"><b class="num"><span data-count="778">778</span></b><span>de 874 rutas, cerca del 89 %</span></div>
+    <div class="dots" id="dots" role="img" aria-label="874 puntos; 778 resaltados en rojo"></div>
+    <div class="seg-ctl" role="group" aria-label="Análisis de la CRC" id="crcCtl">
+      <button type="button" aria-pressed="true" data-p="risk">Riesgos</button>
+      <button type="button" aria-pressed="false" data-p="ben">Beneficios</button>
+    </div>
+    <div class="panel" id="p-risk">
+      <ul class="list">
+        <li>Un insumo esencial quedaría en manos de Claro (integración vertical).</li>
+        <li>Aumentaría la dependencia de operadores que compiten con Claro en servicios fijos y móviles.</li>
+        <li>Claro ya fue declarado dominante en el mercado móvil.</li>
+        <li>Menor presión competitiva podría traducirse en peor calidad o precios más altos.</li>
+      </ul>
+    </div>
+    <div class="panel" id="p-ben" hidden>
+      <ul class="list good">
+        <li>Más redundancia de las redes ante fallas.</li>
+        <li>Mayores velocidades.</li>
+        <li>Expansión y modernización de redes 4G y 5G.</li>
+        <li>Mejores condiciones para el roaming.</li>
+      </ul>
+    </div>
+    <div class="head" style="gap:10px">
+      <h2 style="font-size:19px">Tres salidas posibles para la SIC</h2>
+    </div>
+    <div class="scen fade">
+      <div><b>Rechazar</b><span>La integración no se autoriza.</span></div>
+      <div><b>Aprobar</b><span>Se autoriza sin condiciones.</span></div>
+      <div class="on"><b>Aprobar con condiciones</b><span>Lo que pide la CRC: acceso a la red, compromisos del Plan Nacional de Fibra Óptica y mitigación de riesgos. Hay precedente en Tigo-Movistar (nov. 2025).</span></div>
+    </div>
+  </section>
+  </div>
+
+  <div class="foot">
+    <span>* Cifra calculada por diferencia a partir de los datos de la CRC (60.000 − 32.000 km; 58.000 − 15.000 accesos).</span>
+    <span>Fuentes de los datos: Superintendencia de Sociedades, Comisión de Regulación de Comunicaciones (CRC), SIC y declaraciones de ATP, Azteca y Claro. Los 58.000 usuarios y el 25 % son estimaciones de la CRC sobre afectación potencial. Cifras en pesos colombianos (COP); M = millones.</span>
+  </div>
+</div>
+
+<script>
+(function(){
+  var $=function(s,r){return (r||document).querySelector(s)};
+  var $$=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
+  var fmt=function(n){return Math.round(n).toLocaleString('es-CO')};
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* Tween de números */
+  function tween(el,to,format,from){
+    var start=from!=null?from:(el._v||0); el._v=to;
+    if(reduce){el.textContent=format(to);return}
+    var t0=null,dur=1000;
+    function step(t){ if(t0===null)t0=t; var p=Math.min(1,(t-t0)/dur), e=1-Math.pow(1-p,3);
+      el.textContent=format(start+(to-start)*e); if(p<1)requestAnimationFrame(step)}
+    requestAnimationFrame(step);
+  }
+
+  /* Puntos */
+  var dots=$('#dots');
+  for(var i=0;i<874;i++){
+    var d=document.createElement('i'); d.className='dot'+(i<778?' hot':'');
+    d.style.transitionDelay=(((i%38)+Math.floor(i/38))*14)+'ms'; dots.appendChild(d);
+  }
+
+  /* Época */
+  var ERA={'2011':{km:15000,mun:400,kmL:function(v){return fmt(v)+' km'},munL:function(v){return '400+'},note:'La franja gris marca la meta de 2011: unos 15.000 km y más de 400 municipios en 30 meses.'},
+           'hoy':{km:32000,mun:900,kmL:function(v){return fmt(v)+' km'},munL:function(v){return '~'+fmt(v)},note:'La franja gris marca la meta de 2011. Hoy la red supera los 32.000 km y llega a cerca de 900 municipios.'}};
+  function setEra(k){
+    var e=ERA[k];
+    $$('#eraCtl button').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.era===k)});
+    $('#b-km').style.width=(e.km/35000*100)+'%';
+    $('#b-mun').style.width=(e.mun/1000*100)+'%';
+    tween($('#v-km'),e.km,e.kmL); tween($('#v-mun'),e.mun,e.munL);
+    $('#eraNote').textContent=e.note;
+  }
+  $('#v-km')._v=32000; $('#v-mun')._v=900;
+  $$('#eraCtl button').forEach(function(b){b.addEventListener('click',function(){setEra(b.dataset.era)})});
+
+  /* Balance */
+  var BAL={az:{a:301880,p:388302,t:'es lo que los pasivos de Azteca superan a sus activos. En marzo de 2025 anunció su reorganización para renegociar deudas.'},
+           tv:{a:199290,p:234598,t:'es lo que los pasivos de TV Azteca Sucursal Colombia superan a sus activos. Es garante de las obligaciones financieras de Azteca y también está en reorganización.'}};
+  var cop=function(v){return 'COP '+fmt(v)+' M'};
+  function setBal(k){
+    var b=BAL[k];
+    $$('#balCtl button').forEach(function(x){x.setAttribute('aria-pressed',x.dataset.b===k)});
+    $('#b-act').style.width=(b.a/400000*100)+'%'; $('#b-pas').style.width=(b.p/400000*100)+'%';
+    tween($('#v-act'),b.a,cop); tween($('#v-pas'),b.p,cop); tween($('#v-def'),b.p-b.a,cop);
+    $('#t-def').textContent=b.t;
+  }
+  $('#v-act')._v=301880; $('#v-pas')._v=388302; $('#v-def')._v=86422;
+  $$('#balCtl button').forEach(function(b){b.addEventListener('click',function(){setBal(b.dataset.b)})});
+
+  /* Riesgos / beneficios */
+  $$('#crcCtl button').forEach(function(b){b.addEventListener('click',function(){
+    $$('#crcCtl button').forEach(function(x){x.setAttribute('aria-pressed',x===b)});
+    $('#p-risk').hidden=b.dataset.p!=='risk'; $('#p-ben').hidden=b.dataset.p!=='ben';
+  })});
+
+  /* Tooltip */
+  var tip=document.createElement('div'); tip.className='tip'; document.body.appendChild(tip);
+  document.addEventListener('pointermove',function(e){
+    var t=e.target.closest&&e.target.closest('[data-tip]');
+    if(!t){tip.style.opacity=0;return}
+    tip.textContent=t.dataset.tip; tip.style.opacity=1;
+    var x=Math.min(e.clientX+14,window.innerWidth-tip.offsetWidth-8), y=e.clientY+16;
+    if(y+tip.offsetHeight>window.innerHeight)y=e.clientY-tip.offsetHeight-10;
+    tip.style.left=Math.max(8,x)+'px'; tip.style.top=y+'px';
+  });
+  document.addEventListener('pointerleave',function(){tip.style.opacity=0});
+
+  /* Pestañas: cada sección anima al mostrarse */
+  var tabs=$$('.tab'), btns=$$('.nav button'), cur=-1;
+  function reveal(s){
+    s.classList.remove('pre');
+    $$('[data-count]',s).forEach(function(el){
+      var to=+el.dataset.count; el.textContent=fmt(0); tween(el,to,fmt,0);
+    });
+  }
+  function show(i,scroll){
+    if(i<0||i>=tabs.length)return; cur=i;
+    tabs.forEach(function(t,k){t.hidden=k!==i});
+    btns.forEach(function(b,k){b.setAttribute('aria-selected',k===i)});
+    var secs=$$('section.s',tabs[i]);
+    secs.forEach(function(x){x.classList.add('pre')});
+    void tabs[i].offsetHeight;
+    setTimeout(function(){secs.forEach(reveal)},40);
+    if(scroll)window.scrollTo({top:0,behavior:reduce?'auto':'smooth'});
+  }
+  btns.forEach(function(b,k){b.addEventListener('click',function(){show(k,true)})});
+  tabs.forEach(function(t,k){
+    var pg=document.createElement('div'); pg.className='pager';
+    var prev=document.createElement('button'), next=document.createElement('button'), sp=document.createElement('span');
+    prev.type=next.type='button'; sp.className='sp';
+    if(k>0){prev.textContent='← '+btns[k-1].textContent; prev.addEventListener('click',function(){show(k-1,true)}); pg.appendChild(prev)} else pg.appendChild(sp);
+    if(k<tabs.length-1){next.textContent=btns[k+1].textContent+' →'; next.addEventListener('click',function(){show(k+1,true)}); pg.appendChild(next)}
+    t.appendChild(pg);
+  });
+  var h=(location.hash||'').replace('#',''), start=0;
+  btns.forEach(function(b,k){if(b.dataset.tab===h)start=k});
+  show(start,false);
+})();
+</script>
+
+</body></html>
